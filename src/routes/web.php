@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WeightLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {  return view('welcome');});
+Route::get('/weight_logs', [WeightLogController::class, 'index']);
+Route::middleware('auth')->group(function () {
+    Route::get('/', [AuthController::class, 'index']);
+    });

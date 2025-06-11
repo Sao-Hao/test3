@@ -14,11 +14,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'name' => 'tony',
-            'email' => '35@coach.co.jp',
-            'password' => 'American'
-        ];
+        $exists = DB::table('users')->where('email', '35@coach.co.jp')->exists();
+
+        if (!$exists) {
+            $param = [
+                'name' => 'tony',
+                'email' => '35@coach.co.jp',
+                'password' => 'American'
+            ];
         DB::table('users')->insert($param);
+        }
     }
 }
